@@ -1,0 +1,14 @@
+import RPi.GPIO as GPIO
+import time
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(10, GPIO.OUT)
+GPIO.setup(12, GPIO.IN)
+variable = True
+while True:
+    print("El led tiene una condicion logica:  "+ str(variable))
+    GPIO.output(10, variable)
+    variable=GPIO.input(12)
+    archivo= open("/var/www/html/prueba.txt", "w+")
+    archivo.write(str(variable))
+    archivo.close()
+    time.sleep(0.25)
